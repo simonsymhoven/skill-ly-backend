@@ -15,7 +15,7 @@ public class EmployeeController {
 
     @GetMapping(value = "/employee/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Employee getBookById(@PathVariable("id") String id) {
-        Employee _employee = repository.findByUsername(id).orElseThrow(() -> new DataNotFoundException(id));
+        Employee _employee = repository.findByUsername(id).orElseThrow(() -> new RuntimeException(id));
 
         return _employee;
     }
