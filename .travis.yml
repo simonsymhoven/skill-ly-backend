@@ -1,6 +1,13 @@
 language: java
+jdk:
+  - openjdk11
 branches:
   only:
-  - master
+    - master
 script:
-- mvn package -DskipTests
+  - mvn package -DskipTests
+deploy:
+  provider: heroku
+  api_key:
+    secure: SZMaSA3JFM8NNWlaznS7TY4phCR7NPJhsZWOKcmKhblnW+X1OMiTVa7PIcCeyRdjLrlXp+LEWbzRhJwsfE/EOeVB70e35zysSz0t82xu58muhsx1BEM136IlLYPn3el/cYA6noNndqpzYyzZIaqRYg1Idb6Azc7TydtCVMLRh7CCqr1pdzq0ASCPlYgcrVnIJvpq3Kj4CWUosvOGxs6GJV/b/7+V5AdIIRsHAR/SMCG3jLMsrHj28H+i7fzXyb4wiTARGCSyC1ZSQy1bt+bGC03QHlZiM1Xza0cuvkOzQX6GmJFMi4j6T8VzkUvGlLN0URNE8umE+AtXysvF/vV/jFI2uS5Kf25p8ahF7GfO95NrNnupzuCV6ceAK6zZA/sLT5Cj0TRwFZ95x+JkoLVNjhQdc9UdKB8fI8qbH/xCM1QO6CD8Oxh34AYZDZh+KQoTqU4kIb+dFV4BuevZRYe3oSVsnnQa55IRSipLLfbMvYKO1nY2BpvbeefRjhPqaC32/MT63hTQHAIrikBVG57IC3RHSLEU6edbn1RQbrazenLkdBMTkf/PhyWQtOgEdKjATJqYDuBahPuvkxUv7BATXdHKG10zUNDBBez2b+2gGloxWDXD4lhleT2yJl9K3OGGQrErwapEunjqgTZlKf7jU5mX8A4433ANAoimdTpvJJg=
+  app: skill-ly-spring-boot
