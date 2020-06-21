@@ -76,23 +76,11 @@ public class AuthController {
     Employee employee = new Employee(signUpRequest.getName(), signUpRequest.getUsername(),
       signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
 
-    Set<String> strRoles = signUpRequest.getPermissions();
+
     Set<Permission> permissions = new HashSet<>();
-
-    strRoles.forEach(permission -> {
-      switch(permission) {
-        case "ROLE_ADMIN":
-          Permission adminPermission = roleRepository.findByName(PermissionName.ROLE_ADMIN)
+    Permission userPermission = roleRepository.findByName(PermissionName.ROLE_USER)
             .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Permission not find."));
-          permissions.add(adminPermission);
-          break;
-
-        default:
-          Permission userPermission = roleRepository.findByName(PermissionName.ROLE_USER)
-            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Permission not find."));
-          permissions.add(userPermission);
-      }
-    });
+    permissions.add(userPermission);
 
     employee.setPermissions(permissions);
     employeeRepository.save(employee);
